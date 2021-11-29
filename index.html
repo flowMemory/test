@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<style>
+    html, body { width: 100%; height: 100%; font-size: 30px; color: #000000; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in list" :key="item.id">{{item.name}}</li>
+        </ul>
+        <div>{{createdTest}}</div>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            list: []
+        },
+        created: function() {
+            this.createdTest = 'createdTest'
+            setTimeout(() => {
+                console.log('测试created中动态添加的数据')
+                this.createdTest = 'createdTest111'
+            }, 1000)
+        },
+        mounted: function() {
+            setTimeout(() => {
+                this.list = [
+                    {id: 10000000000000000000, name: '1'},
+                    {id: 20000000000000000000, name: '2'},
+                    {id: 30000000000000000000, name: '3'},
+                    {id: 40000000000000000000, name: '4'},
+                ]
+            }, 2000)
+        },
+    })
+
+
+</script>
